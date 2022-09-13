@@ -2,6 +2,8 @@
 #define OPERATOR_H
 #include<string>
 #include<math.h>
+#include<cmath>
+
 using namespace std;
 class Operator {
 public:
