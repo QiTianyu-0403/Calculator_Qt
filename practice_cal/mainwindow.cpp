@@ -187,7 +187,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFont num_font;
     num_font.setFamily("黑体");
     num_font.setPointSize(18);
-    num_font.setWeight(50);
+    num_font.setWeight((QFont::Weight)50);
     m_0->setFont(num_font);
     m_1->setFont(num_font);
     m_2->setFont(num_font);
@@ -201,7 +201,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFont opr_font;
     opr_font.setFamily("黑体");
     opr_font.setPointSize(10);
-    opr_font.setWeight(20);
+    opr_font.setWeight((QFont::Weight)20);
     m_pi->setFont(opr_font);
     m_e->setFont(opr_font);
     m_plus->setFont(opr_font);
@@ -228,13 +228,13 @@ MainWindow::MainWindow(QWidget *parent)
     QFont line1_font;
     line1_font.setFamily("黑体");
     line1_font.setPointSize(10);
-    line1_font.setWeight(20);
+    line1_font.setWeight((QFont::Weight)20);
     m_history->setFont(line1_font);
     m_in->setFont(line1_font);
     QFont line2_font;
     line2_font.setFamily("黑体");
     line2_font.setPointSize(30);
-    line2_font.setWeight(50);
+    line2_font.setWeight((QFont::Weight)50);
     m_out->setFont(line2_font);
 
 
