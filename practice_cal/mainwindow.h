@@ -7,6 +7,7 @@
 #include"QPushButton"
 #include"QLineEdit"
 #include<QString>
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -51,7 +52,13 @@ public slots:
     void button_clear();
     void button_clearnum();
     void button_delete();
+
+    void ButtonSquare();
+    void ButtonAbs();
+    void ButtonExp();
+
 private:
+
     QPushButton* m_0;
     QPushButton* m_1;
     QPushButton* m_2;
@@ -86,10 +93,18 @@ private:
     QPushButton* m_clear;
     QPushButton* m_clearnum;
     QPushButton* m_delete;
+
+    QPushButton* m_pbuttonSquare;
+    QPushButton* m_pbuttonAbs;
+    QPushButton* m_pbuttonExp;
+
+
     QLineEdit *m_in;
     QLineEdit *m_out;
     QLineEdit *m_history;
     Factory m_fact;
     Calculator m_cal;
+
+
 };
 #endif // MAINWINDOW_H

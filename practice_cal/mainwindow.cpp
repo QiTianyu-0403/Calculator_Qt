@@ -5,6 +5,8 @@
 #include <QToolTip>
 #include <QStackedLayout>
 string text;
+string g_strText;
+
 vector<string> calcu;
 string history;
 
@@ -30,7 +32,9 @@ MainWindow::MainWindow(QWidget *parent)
     REGISTRAR(Nagative,"~")
     REGISTRAR(Left,"(")
     REGISTRAR(Right,")")
-
+    REGISTRAR(Square, "x^2")
+    REGISTRAR(Abs, "|x|")
+    REGISTRAR(Exp, "exp(x)")
 
     m_0=new QPushButton("0",this);
     m_1=new QPushButton("1",this);
@@ -66,6 +70,13 @@ MainWindow::MainWindow(QWidget *parent)
     m_clear=new QPushButton("AC",this);
     m_clearnum=new QPushButton("CE",this);
     m_delete=new QPushButton("<——",this);
+
+    m_pbuttonSquare = new QPushButton("x^2", this);
+    m_pbuttonAbs = new QPushButton("|x|", this);
+    m_pbuttonExp = new QPushButton("exp(x)", this);
+    //m_pbuttonSquare = new QPushButton(" ", this);
+    //m_pbuttonSquare = new QPushButton(" ", this);
+
     m_in=new QLineEdit(this);
     m_out=new QLineEdit(this);
     m_history=new QLineEdit(this);
@@ -246,36 +257,47 @@ MainWindow::MainWindow(QWidget *parent)
     bottom_1->addWidget(m_clear);
     bottom_1->addWidget(m_clearnum);
     bottom_1->addWidget(m_delete);
+
+    QHBoxLayout *pboxlayoutRow1 = new QHBoxLayout;
+    pboxlayoutRow1->addWidget(m_pbuttonSquare);
+    pboxlayoutRow1->addWidget(m_pbuttonAbs);
+    pboxlayoutRow1->addWidget(m_pbuttonExp);
+
     QHBoxLayout *bottom_2=new QHBoxLayout;
     bottom_2->addWidget(m_mod);
     bottom_2->addWidget(m_log);
     bottom_2->addWidget(m_ln);
     bottom_2->addWidget(m_e);
     bottom_2->addWidget(m_pow);
+
     QHBoxLayout *bottom_3=new QHBoxLayout;
     bottom_3->addWidget(m_sqrt);
     bottom_3->addWidget(m_left);
     bottom_3->addWidget(m_right);
     bottom_3->addWidget(m_pi);
     bottom_3->addWidget(m_plus);
+
     QHBoxLayout *bottom_4=new QHBoxLayout;
     bottom_4->addWidget(m_sin);
     bottom_4->addWidget(m_7);
     bottom_4->addWidget(m_8);
     bottom_4->addWidget(m_9);
     bottom_4->addWidget(m_minus);
+
     QHBoxLayout *bottom_5=new QHBoxLayout;
     bottom_5->addWidget(m_cos);
     bottom_5->addWidget(m_4);
     bottom_5->addWidget(m_5);
     bottom_5->addWidget(m_6);
     bottom_5->addWidget(m_multiply);
+
     QHBoxLayout *bottom_6=new QHBoxLayout;
     bottom_6->addWidget(m_tan);
     bottom_6->addWidget(m_1);
     bottom_6->addWidget(m_2);
     bottom_6->addWidget(m_3);
     bottom_6->addWidget(m_divide);
+
     QHBoxLayout *bottom_7=new QHBoxLayout;
     bottom_7->addWidget(m_nagative);
     bottom_7->addWidget(m_dot);
@@ -286,6 +308,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QVBoxLayout *bottom=new QVBoxLayout;
     bottom->addLayout(bottom_1);
+    bottom->addLayout(pboxlayoutRow1);
     bottom->addLayout(bottom_2);
     bottom->addLayout(bottom_3);
     bottom->addLayout(bottom_4);
@@ -342,6 +365,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_clear,&QPushButton::clicked,this,&MainWindow::button_clear);
     connect(m_clearnum,&QPushButton::clicked,this,&MainWindow::button_clearnum);
     connect(m_delete,&QPushButton::clicked,this,&MainWindow::button_delete);
+
+    connect(m_pbuttonSquare, &QPushButton::clicked, this, &MainWindow::ButtonSquare);
+    connect(m_pbuttonAbs, &QPushButton::clicked, this, &MainWindow::ButtonAbs);
+    connect(m_pbuttonExp, &QPushButton::clicked, this, &MainWindow::ButtonExp);
+
     //connect(this,&MainWindow::expression,&m_cal,&Calculator::doIt);
     //connect(&m_cal,&Calculator::sendresult,m_out,&QLineEdit::setText);
 
@@ -749,6 +777,32 @@ void MainWindow::button_delete(){
     }
 }
 
+void MainWindow::ButtonSquare()
+{
+    QString qstrTextSrc;
+    QString qstrTextDst;
+    qstrTextSrc = m_in->text();
+    double dResult = qstrTextSrc.toDouble();
+    dResult = dResult * dResult;
+    QTextStream(&qstrTextDst) << dResult;
+    m_out->setText(qstrTextDst);
+}
+
+void MainWindow::ButtonAbs()
+{
+    text+="rec(";
+    calcu.push_back("rec");
+    calcu.push_back("(");
+    m_in->setText(QString::fromStdString(text));
+}
+
+void MainWindow::ButtonExp()
+{
+    text+="rec(";
+    calcu.push_back("rec");
+    calcu.push_back("(");
+    m_in->setText(QString::fromStdString(text));
+}
 //m_in->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");
 //string s;
 //if(text.size()>0){

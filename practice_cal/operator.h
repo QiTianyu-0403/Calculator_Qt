@@ -3,7 +3,6 @@
 #include<string>
 #include<math.h>
 #include<cmath>
-
 using namespace std;
 class Operator {
 public:
@@ -183,5 +182,42 @@ public:
         return a;
     }
 };
+
+class Square :public Operator
+{
+    // 运算符#
+public:
+    Square() : Operator("rec", 1, 5) {}
+
+    double get(double a, double b) const
+    {
+        return b * b;
+    }
+};
+
+class Abs :public Operator
+{
+    // 运算符#
+public:
+    Abs() : Operator("rec", 1, 5) {}
+
+    double get(double a, double b) const
+    {
+        return abs(b);
+    }
+};
+
+class Exp :public Operator
+{
+    // 运算符#
+public:
+    Exp() : Operator("rec", 1, 5) {}
+
+    double get(double a, double b) const
+    {
+        return exp(b);
+    }
+};
+
 
 #endif // OPERATOR_H
