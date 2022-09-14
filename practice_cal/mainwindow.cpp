@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     Factory::RegisterClass<Hash> reg_Hash("#");
+
     REGISTRAR(Plus,"+")
     REGISTRAR(Minus,"-")
     REGISTRAR(Multiply,"*")
@@ -790,19 +791,26 @@ void MainWindow::ButtonSquare()
 
 void MainWindow::ButtonAbs()
 {
-    text+="rec(";
-    calcu.push_back("rec");
-    calcu.push_back("(");
-    m_in->setText(QString::fromStdString(text));
+    QString qstrTextSrc;
+    QString qstrTextDst;
+    qstrTextSrc = m_in->text();
+    double dResult = qstrTextSrc.toDouble();
+    dResult = abs(dResult);
+    QTextStream(&qstrTextDst) << dResult;
+    m_out->setText(qstrTextDst);
 }
 
 void MainWindow::ButtonExp()
 {
-    text+="rec(";
-    calcu.push_back("rec");
-    calcu.push_back("(");
-    m_in->setText(QString::fromStdString(text));
+    QString qstrTextSrc;
+    QString qstrTextDst;
+    qstrTextSrc = m_in->text();
+    double dResult = qstrTextSrc.toDouble();
+    dResult = exp(dResult);
+    QTextStream(&qstrTextDst) << dResult;
+    m_out->setText(qstrTextDst);
 }
+
 //m_in->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");
 //string s;
 //if(text.size()>0){
