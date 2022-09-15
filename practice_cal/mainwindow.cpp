@@ -75,7 +75,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_pbuttonSquare = new QPushButton("x^2", this);
     m_pbuttonAbs = new QPushButton("|x|", this);
     m_pbuttonExp = new QPushButton("exp(x)", this);
-    //m_pbuttonSquare = new QPushButton(" ", this);
+
+    m_pbutton10PowX = new QPushButton("10^x", this);
     //m_pbuttonSquare = new QPushButton(" ", this);
 
     m_in=new QLineEdit(this);
@@ -261,6 +262,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QHBoxLayout *pboxlayoutRow1 = new QHBoxLayout;
     pboxlayoutRow1->addWidget(m_pbuttonSquare);
+    pboxlayoutRow1->addWidget(m_pbutton10PowX);
     pboxlayoutRow1->addWidget(m_pbuttonAbs);
     pboxlayoutRow1->addWidget(m_pbuttonExp);
 
@@ -368,6 +370,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_delete,&QPushButton::clicked,this,&MainWindow::button_delete);
 
     connect(m_pbuttonSquare, &QPushButton::clicked, this, &MainWindow::ButtonSquare);
+    connect(m_pbutton10PowX, &QPushButton::clicked, this, &MainWindow::Button10PowX);
     connect(m_pbuttonAbs, &QPushButton::clicked, this, &MainWindow::ButtonAbs);
     connect(m_pbuttonExp, &QPushButton::clicked, this, &MainWindow::ButtonExp);
 
@@ -785,6 +788,17 @@ void MainWindow::ButtonSquare()
     qstrTextSrc = m_in->text();
     double dResult = qstrTextSrc.toDouble();
     dResult = dResult * dResult;
+    QTextStream(&qstrTextDst) << dResult;
+    m_out->setText(qstrTextDst);
+}
+
+void MainWindow::Button10PowX()
+{
+    QString qstrTextSrc;
+    QString qstrTextDst;
+    qstrTextSrc = m_in->text();
+    double dResult = qstrTextSrc.toDouble();
+    dResult = pow(10, dResult);
     QTextStream(&qstrTextDst) << dResult;
     m_out->setText(qstrTextDst);
 }
