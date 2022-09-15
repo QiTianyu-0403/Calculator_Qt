@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include<string>
-#include<calculator.h>
-#include"QPushButton"
-#include"QLineEdit"
-#include<QString>
+#include <string>
+#include <calculator.h>
+#include "QPushButton"
+#include "QLineEdit"
+#include <QString>
 
 class MainWindow : public QMainWindow
 {
@@ -15,9 +15,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 //signals:
     //void expression(const vector<string>& calcu);
+
 public slots:
+
     void button_0();
     void button_1();
     void button_2();
@@ -54,8 +57,11 @@ public slots:
     void button_delete();
 
     void ButtonSquare();
-    void ButtonAbs();
+    void Button10PowX();
     void ButtonExp();
+    //void ButtonXPowY();
+    void ButtonAbs();
+
 
 private:
 
@@ -95,6 +101,7 @@ private:
     QPushButton* m_delete;
 
     QPushButton* m_pbuttonSquare;
+    QPushButton* m_pbutton10PowX;
     QPushButton* m_pbuttonAbs;
     QPushButton* m_pbuttonExp;
 
